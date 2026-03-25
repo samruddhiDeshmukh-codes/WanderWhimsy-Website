@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .detail-wrapper {
+            display: flex; gap: 40px; align-items: center; 
+            max-width: 900px; margin: 100px auto;
+            background: #161b2a; padding: 40px; border-radius: 30px;
+        }
+        .detail-img { width: 400px; border-radius: 20px; }
+        .info h1 { font-size: 3rem; margin: 0; }
+        .meta { color: var(--accent-green); font-weight: bold; margin-bottom: 20px; }
+        .luxury-box { background: #1e293b; padding: 20px; border-radius: 15px; border-left: 4px solid var(--accent-green); margin: 20px 0; }
+        .btn-back { background: var(--accent-green); border: none; width: 100%; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="detail-wrapper" id="content"></div>
+    <script>
+        const data = JSON.parse(localStorage.getItem("selectedPlace"));
+        if(data) {
+            document.getElementById('content').innerHTML = `
+                <img src="${data.img}" class="detail-img">
+                <div class="info">
+                    <h1>${data.name}</h1>
+                    <div class="meta">${data.country.toUpperCase()} | ${data.temp}</div>
+                    <p>${data.description}</p>
+                    <div class="luxury-box">
+                        <div>🏨 Luxury Stay: ${data.hotel}</div>
+                        <div>💰 Nightly Rate: $${data.price}</div>
+                    </div>
+                    <button class="btn-back" onclick="window.location.href='index.html'">Return to Gallery</button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
